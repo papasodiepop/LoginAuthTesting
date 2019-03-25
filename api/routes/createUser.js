@@ -13,7 +13,14 @@ mongodb.connect(mongoURL, (err, db) => {
 })
 router.post('/', (req, res, next) => {
     let password = req.body.password
-    console.log('Username: ' + req.body.username + '\nPassword: ' + password)
+    console.log(
+        'Username: ' +
+            req.body.username +
+            '\nEmail: ' +
+            req.body.email +
+            '\nPassword: ' +
+            password
+    )
     bcrypt.hash(password, saltRounds, (err, hash) => {
         if (err) throw err
         else {
@@ -23,6 +30,7 @@ router.post('/', (req, res, next) => {
             password = hash
             user = {
                 username: req.body.username,
+                email: req.body.email,
                 password: password
             }
             mongodb.connect(mongoURL, (err, db) => {
