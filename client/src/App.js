@@ -29,12 +29,19 @@ class App extends Component {
         let usernameError = ''
         let passwordError = ''
         let passwordValidation = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+        let usernameValidation = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{6,15})$/
 
-        if (!this.state.username) {
+        if (usernameValidation.test(this.state.username) !== true) {
+            console.log(
+                'Username: ' + usernameValidation.test(this.state.username)
+            )
             usernameError = 'Username is blank.'
         }
 
         if (passwordValidation.test(this.state.password) !== true) {
+            console.log(
+                'Password: ' + passwordValidation.test(this.state.password)
+            )
             passwordError = 'Password field is blank.'
         }
 
@@ -42,6 +49,8 @@ class App extends Component {
             this.setState({ usernameError, passwordError })
             return false
         }
+        console.log('Username: ' + usernameValidation.test(this.state.username))
+        console.log('Password: ' + passwordValidation.test(this.state.password))
         return true
     }
 
