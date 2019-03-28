@@ -6,7 +6,7 @@ const mongodb = require('mongodb')
 const mongoURL = 'mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb'
 const saltRounds = 16
 
-mongodb.connect(mongoURL, (err, db) => {
+mongodb.connect(mongoURL, { useNewUrlParser: true }, (err, db) => {
     if (err) throw err
     console.log('DATABASE connection achieved!')
     db.close()
