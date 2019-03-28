@@ -73,7 +73,7 @@ class createUser extends React.Component {
         }
         if (isValid) {
             axios
-                .post('http://localhost:9000/createUser', loginData)
+                .post('http://178.128.167.210:9000/createUser', loginData)
                 .then(res => console.log(res.data))
             console.log(loginData)
             this.setState(initialState)
